@@ -13,7 +13,9 @@ function Button:mousepress( x, y, mouse_button )
     if not ( mouse_button == 1 ) then return end
 
     if love.system.getOS() == "Android" then
-        self:onClick( x - self.x, y - self.y )
+        if collide( { x = x, y = y, w = 1, h = 1 }, self )
+            self:onClick( x - self.x, y - self.y )
+        end
     else
         if self.hovered then
             self:onClick( x - self.x, y - self.y )
